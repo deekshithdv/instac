@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   #feed
   get "/dashboard" => "accounts#index"
 
+  #profile
+  get "/profile" => "accounts#show"
+  resources :posts, only: [:new, :create, :show , :destroy]
+  
+
 end

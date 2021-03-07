@@ -1,0 +1,58 @@
+.profile .avatar{
+    .wrapper{
+      width: 140px;
+      height: 140px;
+      margin: 40px auto;
+    }
+    .wrapper img{
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+  
+  .profile .basic-info{
+    padding: 40px 0px;
+    .user-wrapper{
+      display: flex;
+    }
+    .username{
+      font-size: 30px;
+      line-height: 40px;
+      font-weight: 200;
+    }
+    .edit-profile{
+      margin-left: 20px;
+      margin-top: 10px;
+      background-color: transparent;
+      border-radius: 5px;
+      border: 1px solid #dbdbdb;
+      color: #262626;
+      font-size: 14px;
+      padding: 5px 5px;
+      font-weight: 500;
+    }
+    ul.posts-1{
+      text-align: left;
+      padding-left: 0;
+      > li{
+        display: inline;
+        padding-right: 40px;
+        font-size: 15px; 
+        span{
+          color: #262626;
+          font-weight: 600;
+        }
+      }
+    }
+    
+   .bio{
+     text-align: left;
+   }
+  }
+
+
+
+
+
+
+  

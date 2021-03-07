@@ -31,6 +31,10 @@ gem 'mini_magick'
 
 #bootstrap for stylesheet
 gem 'bootstrap-sass', '~> 3.4.1'
+# bootstrap dependency javascript
+gem 'jquery-rails'
+
+gem 'font-awesome-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

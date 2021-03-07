@@ -1,3 +1,28 @@
-<p><%=current_account.username%></p>
-
-User data here!
+<div class="posts">
+  <% @posts.each do |post| %>
+    <section class="post">
+      <!-- post view -->
+       
+  <div class="user">
+  <div class="avatar">
+  <%= image_tag("profile2.jpeg")%> 
+    </div> 
+    <div class="username">
+      <%= post.account.username %>
+    </div>
+  </div>
+  <div class="user-images">
+ 
+    <div class="wrapper">
+      <%=image_tag post.image , :width => '100%'%>
+    </div>
+  
+  </div>
+  <div class="description">
+    <%= post.caption %><br/>
+    <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
+    <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;' %>
+  </div>
+    </section>
+  <% end %>
+</div>
