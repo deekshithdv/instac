@@ -1,15 +1,19 @@
 <div class="user-profile">
   <div class="profile row">
     <div class="col-md-4 avatar">
-      <div class="wrapper">
-      <img alt="profile" src="/assets/images/profile2.jpeg" />
-      </div>
+    <div class="wrapper">
+    <% if current_account.avatar.attached? %>
+      <%= image_tag current_account.avatar %>
+      <%else%>
+      <%= image_tag("profile2.jpg")%>
+    <%end %>
+  </div>
     </div>
     
     <div class="col-md-5 basic-info">
       <div class="user-wrapper">
         <h2 class="username"><%=current_account.username%></h2>
-        <%= link_to "Edit profile", edit_account_registration_path, class: "edit-profile" %>
+        <%= link_to "Edit profile", edit_account_path(current_account), class: "edit-profile" %>
       </div>
       <ul class="posts-1">
         <li><span><%=@posts.count%></span> posts</li>
@@ -17,8 +21,9 @@
         <li><span>345</span> following</li>
       </ul>
       <div class="bio">
-      <a>Say "HI" to catch up!</a><br/>
-      <a>more...</a>
+      <a><%=current_account.bio %> </a><br/>
+      <a>more...</a><br/>
+      <a href="https://www.instagram.com/"><%=current_account.website %> </a>
       </div>
     </div>
   </div>

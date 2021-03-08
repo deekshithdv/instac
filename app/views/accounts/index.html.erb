@@ -5,8 +5,12 @@
        
   <div class="user">
   <div class="avatar">
-  <img alt="profile" src="/assets/images/profile2.jpeg" />
-    </div> 
+      <% if post.account.avatar.attached? %>
+        <%= image_tag post.account.avatar %>
+      <%else%>
+        <%= image_tag("profile2.jpg")%>
+      <% end %>
+    </div>
     <div class="username">
       <%= post.account.username %>
     </div>

@@ -1,0 +1,52 @@
+<div class="edit-user-profile">
+<%= form_with model: current_account, local: true, html: {class: "form-horizontal form-edit-user"} do |f| %>
+    <div class="form-group row">
+        <div class="col-sm-3 col-form-label">
+            <% if current_account.avatar.attached? %>
+            <%= image_tag current_account.avatar, class: 'avatar' %>
+            <%end %>
+        </div>
+
+        <div class="col-sm-3">
+            <h3 class="username"><%=current_account.username %></h3>   
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :avatar, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-4">
+            <%= f.file_field :avatar, class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :username, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-4">
+            <%= f.text_field :username, class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :website, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-4">
+            <%= f.text_field :website, class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :bio, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-4">
+            <%= f.text_area :bio, class: 'form-control' %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-4">
+            <%= f.submit "Submit", class: 'btn btn-primary' %>
+        </div>
+    </div>
+<% end %>
+</div>
+

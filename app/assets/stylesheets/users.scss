@@ -51,8 +51,16 @@
   }
 
 
+  .edit-user-profile{
+  .avatar{
+    width: 140px;
+    height: 140px;
+    margin: 40px auto;
+    width: 100%;
+    border-radius: 50%;
+  }
 
-
-
-
-  
+  .username{
+    padding-top: 50px;
+  }
+}

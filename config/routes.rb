@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   #profile
   get "/profile" => "accounts#show"
-  resources :posts, only: [:new, :create, :show , :destroy]
   
+  resources :posts, only: [:new, :create, :show , :destroy]
+  resources :accounts, only: [:show, :edit, :update, :index]
 
 end
