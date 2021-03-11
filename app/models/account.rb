@@ -8,4 +8,12 @@ class Account < ApplicationRecord
   validates :email, presence:true , uniqueness: {case_sensitive:false}
   has_many :posts, dependent: :destroy
   has_one_attached :avatar
+
+  def total_followers
+  0
+  end
+
+  def total_following
+    0
+  end
 end

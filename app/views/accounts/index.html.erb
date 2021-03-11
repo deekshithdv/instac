@@ -6,13 +6,13 @@
   <div class="user">
   <div class="avatar">
       <% if post.account.avatar.attached? %>
-        <%= image_tag post.account.avatar %>
+        <%=link_to image_tag(post.account.avatar), profile_path(post.account.id) %>
       <%else%>
         <%= image_tag("profile2.jpg")%>
       <% end %>
     </div>
     <div class="username">
-      <%= post.account.username %>
+      <%=link_to post.account.username, profile_path(post.account.id), class:"text-dark" %>
     </div>
   </div>
   <div class="user-images">
@@ -23,10 +23,11 @@
   
   </div>
   <div class="description">
+    <p><%= post.total_likes %> likes</p>
     <%= post.caption %><br/>
     <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
-    <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;' %>
+    <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
   </div>
     </section>
-  <% end %>
+  <% end %> 
 </div>

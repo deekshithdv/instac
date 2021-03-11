@@ -1,0 +1,44 @@
+<div class="profile">
+  <div class="profile row">
+    <div class="col-4 avatar">
+      <div class="wrapper">
+        <% if @account.avatar.attached? %>
+          <%= image_tag @account.avatar %>
+          <%else%>
+          <%= image_tag("profile2.jpg")%>
+        <%end %>
+      </div>
+    </div>
+    
+    <div class="col-8 basic-info">
+      <div class="user-wrapper">
+        <h2 class="username"><%=@account.username%></h2>
+        <% if @account.id == current_account.id %>
+          <%= link_to "Edit profile", edit_account_registration_path, class: "edit-profile" %>
+        <%else%>
+          <%= link_to "Follow", "#",  class: "edit-profile" %>
+        <%end%>
+      </div>
+      <ul class="posts-1">
+        <li><span><%=@account.posts.count%></span> posts</li>
+        <li><span><%=@account.total_followers%></span> followers</li>
+        <li><span><%=@account.total_following%></span> following</li>
+      </ul>
+      <div class="bio">
+        <a><%=@account.bio %> </a><br/>
+        <a>more...</a><br/>
+        <a> <%= link_to @account.website if @account.website.present? %> </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @post.each do |post| %>
+      <div class="col-4">
+      <div>
+          <%=link_to image_tag(post.image,:class=>"feed"), "#" %>
+      </div>
+      </div>
+    <%end%>
+  </div>
+</div>

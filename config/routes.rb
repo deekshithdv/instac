@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   get "/dashboard" => "accounts#index"
 
   #profile
-  get "/profile" => "accounts#show"
-  
+  get "profile/:id"=> "accounts#profile",  as:  :profile
   resources :posts, only: [:new, :create, :show , :destroy]
-  resources :accounts, only: [:show, :edit, :update, :index]
+  
 
 end
