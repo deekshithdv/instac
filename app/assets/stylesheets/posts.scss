@@ -4,7 +4,6 @@
 
 // show images in feed
 .posts{
-    margin: 50px 180px 10px;
     .post{
       border: 1px solid #efefef;
       margin: 60px 0;
@@ -38,6 +37,14 @@
       
       
     }
+    .follower-suggetions{
+      text-align: left;
+      margin-top: 60px;
+      background: #fdfcfc;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
   }
 
   // forms for create
@@ -49,5 +56,6 @@
     input[type='text']{
       width: 100%;
     }
+    
     
   }

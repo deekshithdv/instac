@@ -1,0 +1,4 @@
+<%= form_tag follow_account_path, method: :post, class:"float-right" do %>
+  <%= hidden_field_tag :follow_id, @account.id%>
+  <%= submit_tag ("Follow",:class=>"edit-profile") %>
+<%end%>

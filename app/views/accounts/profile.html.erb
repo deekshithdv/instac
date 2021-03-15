@@ -16,13 +16,17 @@
         <% if @account.id == current_account.id %>
           <%= link_to "Edit profile", edit_account_registration_path, class: "edit-profile" %>
         <%else%>
-          <%= link_to "Follow", "#",  class: "edit-profile" %>
+        <% if @following_ids.include?(@account.id) %>
+          <%= render "unfollow" %>
+          <%else%>
+          <%= render "follow" %>
+          <%end%>
         <%end%>
       </div>
       <ul class="posts-1">
         <li><span><%=@account.posts.count%></span> posts</li>
-        <li><span><%=@account.total_followers%></span> followers</li>
-        <li><span><%=@account.total_following%></span> following</li>
+        <li><span><%=@account.total_following%></span> followers</li>
+        <li><span><%=@account.total_followers%></span> following</li>
       </ul>
       <div class="bio">
         <a><%=@account.bio %> </a><br/>

@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get "profile/:id"=> "accounts#profile",  as:  :profile
   resources :posts, only: [:new, :create, :show , :destroy]
   
-
+  post "follow/account" => "accounts#follow_account", as: :follow_account 
+  delete "unfollow/account" => "accounts#unfollow_account", as: :unfollow_account 
 end

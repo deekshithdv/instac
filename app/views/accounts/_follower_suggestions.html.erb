@@ -1,0 +1,14 @@
+<% @follower_suggestions.each do |account|%>
+    <div class="recommended-follwer">
+        <div class="row">
+        <div class="col-sm-9 ">
+        <%= form_tag follow_account_path, method: :post, class:"float-right" do %>
+            <%= hidden_field_tag :follow_id, account.id%>
+            <%= submit_tag "Follow",:class=>"edit-profile"%>
+        <%end%>
+        <%=link_to account.username, profile_path(account.id), class:"text-dark" %>
+        <p style="font-size:9px"><%= account.created_at > 1.days.ago ? "New to instagram" : "followed by X users" %></p>
+        </div>
+        </div>
+    </div>
+<%end%>

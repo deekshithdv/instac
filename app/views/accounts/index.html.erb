@@ -1,33 +1,44 @@
 <div class="posts">
-  <% @posts.each do |post| %>
-    <section class="post">
-      <!-- post view -->
-       
-  <div class="user">
-  <div class="avatar">
-      <% if post.account.avatar.attached? %>
-        <%=link_to image_tag(post.account.avatar), profile_path(post.account.id) %>
-      <%else%>
-        <%= image_tag("profile2.jpg")%>
-      <% end %>
+  <div class="row">
+    <div class="col-8">
+      <% @posts.each do |post| %>
+        <section class="post">
+          <!-- post view -->
+
+          <div class="user">
+            <div class="avatar">
+                <% if post.account.avatar.attached? %>
+                  <%=link_to image_tag(post.account.avatar), profile_path(post.account.id) %>
+                <%else%>
+                  <%= image_tag("profile2.jpg")%>
+                <% end %>
+            </div>
+            <div class="username">
+              <%=link_to post.account.username, profile_path(post.account.id), class:"text-dark" %>
+            </div>
+          </div>
+          <div class="user-images">
+            <div class="wrapper">
+              <%=image_tag post.image , :width => '100%'%>
+            </div>
+          </div>
+          <div class="description">
+            <p><%= post.total_likes %> likes</p>
+            <%= post.caption %><br/>
+            <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
+            <% if post.account.id == current_account.id %>
+            <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
+            <%end%>
+          </div>
+        </section>
+      <% end %> 
     </div>
-    <div class="username">
-      <%=link_to post.account.username, profile_path(post.account.id), class:"text-dark" %>
+    <div class="col-4">
+    <div class="follower-suggetions">
+      <%= link_to "view all","#", class:"float-right text-dark" %>
+      <p class="text-muted"> Suggestions for you</p>
+      <%= render "accounts/follower_suggestions"%>
+      </div>
     </div>
   </div>
-  <div class="user-images">
- 
-    <div class="wrapper">
-      <%=image_tag post.image , :width => '100%'%>
-    </div>
-  
-  </div>
-  <div class="description">
-    <p><%= post.total_likes %> likes</p>
-    <%= post.caption %><br/>
-    <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
-    <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
-  </div>
-    </section>
-  <% end %> 
 </div>

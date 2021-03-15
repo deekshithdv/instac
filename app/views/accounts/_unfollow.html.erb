@@ -1,0 +1,5 @@
+<%= form_tag unfollow_account_path, method: :delete, class:"float-right" do %>
+  <%= hidden_field_tag :follow_id, @account.id %>
+  <%= submit_tag("UnFollow",:class=>"edit-profile") %>
+<%end%>
+
