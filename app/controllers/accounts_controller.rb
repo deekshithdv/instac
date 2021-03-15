@@ -39,7 +39,6 @@ class AccountsController < ApplicationController
         redirect_to dashboard_path
     end
          
-
     def set_account
         @account = Account.find(params[:id])
     end
