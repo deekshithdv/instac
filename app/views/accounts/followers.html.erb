@@ -1,4 +1,10 @@
-<%= @followers_id.each do |account| %>
-    <%= account.id %>
-    <%= account.username %>
-<%end%>
+<table class="table table-striped">
+  <tr>
+    <th>Follower</th>
+  </tr>
+  <tr>
+  <% @follower_list.each do |f| %> 
+      <td><%=link_to Account.find(f).username, profile_path(f) %></td>
+  <% end %>
+  </tr>
+</table>

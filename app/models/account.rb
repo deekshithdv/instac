@@ -4,10 +4,11 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :username, presence: true 
+  validates :username, presence: true , uniqueness: {case_sensitive:false}
   validates :email, presence:true , uniqueness: {case_sensitive:false}
   has_many :posts, dependent: :destroy
   has_one_attached :avatar
+  has_many :likes, dependent: :destroy
 
   def total_followers
     Follower.where(follower_id: self.id).count

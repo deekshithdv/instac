@@ -13,7 +13,7 @@
     <div class="col-8 basic-info">
       <div class="user-wrapper">
         <h2 class="username"><%=@account.username%></h2>
-        <% if @account.id == current_account.id %>
+        <% if current_user? %>
           <%= link_to "Edit profile", edit_account_registration_path, class: "edit-profile" %>
         <%else%>
         <% if @following_ids.include?(@account.id) %>
@@ -23,11 +23,19 @@
           <%end%>
         <%end%>
       </div>
-      <ul class="posts-1">
-        <li><span><%=@account.posts.count%></span> posts</li>
-        <li><span><%=@account.total_following %></span> followers</li>
-        <li><span><%=@account.total_followers%></span> following</li>
-      </ul>
+      <% if current_user? %>
+        <ul class="posts-1">
+          <li><span><%= @account.posts.count%> posts</span></li>
+          <li><span><%=link_to "#{@account.total_following} followers",follower_accounts_path, class:"text-dark" %></span></li>
+          <li><span><%=link_to "#{@account.total_followers} following ", following_accounts_path, class:"text-dark" %></span></li>
+        </ul>
+      <%else%>
+        <ul class="posts-1">
+          <li><span><%= @account.posts.count %></span> posts</li>
+          <li><span><%=@account.total_following %></span> followers</li>
+          <li><span><%=@account.total_followers %></span> following</li>
+        </ul>
+      <%end%>
       <div class="bio">
         <a><%=@account.bio %> </a><br/>
         <a>more...</a><br/>

@@ -9,14 +9,12 @@ class AccountsController < ApplicationController
         following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
         following_ids << current_account.id
         @follower_suggestions = Account.where.not(id: following_ids)
-         
-
       end
 
     def profile
         #user profile 
-            @post = @account.posts.all
-            @following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
+        @post = @account.posts.all
+        @following_ids = Follower.where(follower_id: current_account.id).map(&:following_id)
     end
 
     def follow_account
@@ -38,7 +36,15 @@ class AccountsController < ApplicationController
         end
         redirect_to dashboard_path
     end
-         
+        
+    def followers
+        @follower_list = Follower.where(following_id: current_account.id).map(&:follower_id)
+    end
+
+    def following
+        @following_list = Follower.where(follower_id: current_account.id).map(&:following_id)
+    end
+
     def set_account
         @account = Account.find(params[:id])
     end

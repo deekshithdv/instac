@@ -1,4 +1,9 @@
-<%= @followings_id.each do |account| %>
-    <%= account.id %>
-    <%= account.username %>
-<%end%>
+<table class="table table-striped">
+  <tr>
+    <th>Following</th>
+  </tr>
+  <tr>
+  <% @following_list.each do |f| %> 
+      <td><%=link_to Account.find(f).username, profile_path(f), class:"text-dark float-left" %></td></tr>
+  <% end %>
+</table>

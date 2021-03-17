@@ -7,11 +7,11 @@
 
           <div class="user">
             <div class="avatar">
-                <% if post.account.avatar.attached? %>
-                  <%=link_to image_tag(post.account.avatar), profile_path(post.account.id) %>
-                <%else%>
-                  <%= image_tag("profile2.jpg")%>
-                <% end %>
+              <% if post.account.avatar.attached? %>
+                <%=link_to image_tag(post.account.avatar), profile_path(post.account.id) %>
+              <%else%>
+                <%= image_tag("profile2.jpg")%>
+              <% end %>
             </div>
             <div class="username">
               <%=link_to post.account.username, profile_path(post.account.id), class:"text-dark" %>
@@ -23,7 +23,14 @@
             </div>
           </div>
           <div class="description">
-            <p><%= post.total_likes %> likes</p>
+          <% pre_like = post.likes.find { |like| like.account_id == current_account.id} %>
+          <% if pre_like %>
+            <%= link_to raw("<i class=\"fa fa-heart\"></i>"), post_like_path(post, pre_like), method: :delete %>
+          <% else %>
+            <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), post_likes_path(post), method: :post %>
+          <% end %>
+          
+            <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
             <%= post.caption %><br/>
             <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
             <% if post.account.id == current_account.id %>
@@ -34,10 +41,10 @@
       <% end %> 
     </div>
     <div class="col-4">
-    <div class="follower-suggetions">
-      <%= link_to "view all","#", class:"float-right text-dark" %>
-      <p class="text-muted"> Suggestions for you</p>
-      <%= render "accounts/follower_suggestions"%>
+      <div class="follower-suggetions">
+        <%= link_to "view all","#", class:"float-right text-dark" %>
+        <p class="text-muted"> Suggestions for you</p>
+        <%= render "accounts/follower_suggestions"%>
       </div>
     </div>
   </div>
