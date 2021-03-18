@@ -1,10 +1,10 @@
 <% name = current_account.present? ? current_account.username : "Stranger!" %>
 
 <% if account_signed_in? %>
-<h1 class="mt-5">Welcome to Instagram,<%= name %></h1>
+<h1 class="mt-5">Welcome to Instafact,<%= name %></h1>
 <p class="lead">I hope you enjoy using our site</p>
 <%else%>
-<h1 class="mt-5">Welcome to Instagram,<%= name %></h1>
+<h1 class="mt-5">Welcome to Instafact,<%= name %></h1>
 <p class="lead">Please Register or sign in to continue</p>
 <%= link_to "sign up", new_account_registration_path, class: "btn btn-success" %>
 <%= link_to "sign in", new_account_session_path, class: "btn btn-secondary" %>

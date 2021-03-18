@@ -5,14 +5,20 @@ Rails.application.routes.draw do
 
   #feed
   get "/dashboard" => "accounts#index"
+
+  # route for likes
   resources :posts do
     resources :likes
   end
+
+  # user search
+  get '/search' => 'accounts#search', :as => 'search_page'
 
   #profile
   get "profile/:id"=> "accounts#profile",  as:  :profile
   resources :posts, only: [:new, :create, :show , :destroy]
   
+  # follow
   get "following_accounts" => "accounts#following"
   get "follower_accounts" => "accounts#followers"
   

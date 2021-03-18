@@ -48,4 +48,14 @@ class AccountsController < ApplicationController
     def set_account
         @account = Account.find(params[:id])
     end
+
+    def search
+        if params[:search].blank?  
+            redirect_to(dashboard_path, alert: "Empty field!") and return  
+        else  
+        @parameter = params[:search].downcase  
+        @results = Account.all.where("lower(username) LIKE :search", search: "%#{@parameter}%")  
+        end  
+    end
+
 end
