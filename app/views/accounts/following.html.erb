@@ -1,9 +1,21 @@
 <table class="table table-striped">
   <tr>
-    <th>Following</th>
+  
+    <th colspan="2">Following</th>
   </tr>
-  <tr>
-  <% @following_list.each do |f| %> 
-      <td><%=link_to Account.find(f).username, profile_path(f), class:"text-dark float-left" %></td></tr>
-  <% end %>
+  
+  <% @following_list.each do |f| %>
+    <tr>
+      <td> 
+        <% if Account.find(f).avatar.attached? %>
+          <%= link_to image_tag(Account.find(f).avatar,:class=>"profile-pic"), profile_path(f) %>
+        <%else%>
+          <%= link_to image_tag("profile2.jpg",:class=>"profile-pic"), profile_path(f) %>
+        <%end%>
+      </td>
+      <td>
+      <%=link_to Account.find(f).username, profile_path(f) %>
+      </td>
+      <% end %>
+      </tr>
 </table>

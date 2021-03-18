@@ -1,10 +1,18 @@
 <table class="table table-striped">
   <tr>
-    <th>Follower</th>
+    <th colspan="2">Followers</th>
   </tr>
-  <tr>
-  <% @follower_list.each do |f| %> 
-      <td><%=link_to Account.find(f).username, profile_path(f) %></td>
+  
+  <% @follower_list.each do |f| %>
+    <tr>
+    <td> 
+    <% if Account.find(f).avatar.attached? %>
+    <%= link_to image_tag(Account.find(f).avatar,:class=>"profile-pic"), profile_path(f) %>
+    <%else%>
+    <%= link_to image_tag("profile2.jpg",:class=>"profile-pic"), profile_path(f) %>
+    <%end%>
+    </td>
+    <td><%=link_to Account.find(f).username, profile_path(f) %></td>
   <% end %>
   </tr>
 </table>
