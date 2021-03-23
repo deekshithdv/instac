@@ -1,3 +1,4 @@
+<div class="user-nav">
 <ul class="nav pull-right">
 <li class="nav-item">
 <%= form_tag(search_page_path, :method => "get") do %>  
@@ -8,15 +9,19 @@
 <% end %>
 </li>
 <li class="nav-item">
-<%= link_to "Dashboard" , dashboard_path, class: "nav-link" %>
+<%= link_to  raw("<i class=\"fa fa-home \"></i>"), dashboard_path, class: "nav-link item" %>
 </li>
 <li class="nav-item">
-<%= link_to "New post" , new_post_path , class: "nav-link" %>
+<%= link_to raw("<i class=\"fa fa-plus-square-o muted \"></i>") , new_post_path , class: "nav-link item" %>
 </li>
 <li class="nav-item">
-<%= link_to "My profile" , profile_path(current_account.id), class: "nav-link" %>
+<%= link_to raw("<i class=\"fa fa-bell-o \"></i>") , notifications_path , class: "nav-link item" %>
 </li>
 <li class="nav-item">
-<%= link_to "Sign out" , destroy_account_session_path, method: :delete, class: "nav-link" %>
+<%= link_to raw("<i class=\"fa fa-user-o\"></i>") , profile_path(current_account.id), class: "nav-link item" %>
+</li>
+<li class="nav-item">
+<%= link_to raw("<i class=\"fa fa-sign-out\"></i>") , destroy_account_session_path, method: :delete, class: "nav-link item" %>
 </li> 
 </ul>
+</div>

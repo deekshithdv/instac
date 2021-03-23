@@ -1,6 +1,14 @@
 <% @follower_suggestions.each do |account|%>
     <div class="recommended-follwer">
         <div class="row">
+        <div class="col-sm-3 col-lg-2">
+        <% if account.avatar.attached? %>
+        <%=link_to image_tag(account.avatar,:class=>"profile-pic_1"), profile_path(account.id) %>
+        <%else%>
+        <%=link_to image_tag("profile2.jpg",:class=>"profile-pic_1"), profile_path(account.id) %>
+        <%end%>
+        </div>
+
         <div class="col-sm-9 ">
         
         <%= form_tag follow_account_path, method: :post, class:"float-right" do %>

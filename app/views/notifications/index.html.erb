@@ -1,0 +1,19 @@
+<% if @notifications.count== 0 %>
+<a> No notifications found </a>
+<%else%>
+<% @notifications.each do |notification| %>
+<div class="notification-feed">
+<% if notification.read == false %>
+<%= link_to "#{notification.notified_by.username} has #{notification.notice_type}ed on your post", link_through_path(notification)%>
+<a class="text-muted", style="font-size:10px;"> <%=time_ago_in_words notification.created_at%> ago New</a>
+<%= link_to image_tag(Post.find(notification.post_id ).image,:class=>"profile-pic_2 float-right")%>
+<%else%>
+<%= link_to "#{notification.notified_by.username} has #{notification.notice_type}ed on your post", link_through_path(notification), class:"text-dark"%>
+<a class="text-muted", style="font-size:10px;"> <%=time_ago_in_words notification.created_at%> ago</a>
+<%= link_to image_tag(Post.find(notification.post_id ).image,:class=>"profile-pic_2 float-right")%>
+<%end%>
+
+</div>
+<%end%>
+
+<%end%>

@@ -7,11 +7,36 @@
 }
 
 .profile-pic{
-height: 50px;
-width: 50px;
+height: 30px;
+width: 30px;
 border-radius:50%;
 }
 
-.table{
-    padding-top: 30px;
+.profile-pic_1{
+    height: 40px;
+    width: 40px;
+    border-radius:50%;
 }
+
+.user-nav{
+    .nav-item{
+        padding-left: 10px;
+    }
+    .item{
+        font-size: 20px;
+    }
+}
+
+.notification-feed {
+        margin-top: 1em;
+        background-color: lightblue;
+        padding: 1em;
+    }
+    
+  
+  .profile-pic_2{
+    height: 40px;
+    width: 40px;
+  }
+
+    

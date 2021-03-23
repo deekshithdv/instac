@@ -2,9 +2,11 @@ class LikesController < ApplicationController
     before_action :find_post
     before_action :find_like, only: [:destroy]
     def create
+        @post = Post.find(params[:post_id])    
         if already_liked?
             flash[:notice] = "You can't like more than once"
-        else
+        else 
+            create_notification @post
             @post.likes.create(account_id: current_account.id)
         end
         redirect_to dashboard_path
@@ -21,6 +23,15 @@ class LikesController < ApplicationController
 
     
     private
+    def create_notification(post)
+        return if post.account.id == current_account.id 
+        Notification.create(
+            account_id: post.account.id,
+            notified_by_id: current_account.id,
+            post_id: post.id,
+            identifier: post.id,
+            notice_type: 'lik')
+    end
     def find_post
         @post = Post.find(params[:post_id])
     end

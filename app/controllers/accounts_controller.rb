@@ -2,6 +2,7 @@ class AccountsController < ApplicationController
     before_action :authenticate_account!
     before_action :set_account, only: [:profile]
     def index
+        @comment = Comment.new
         followers_id = Follower.where(follower_id: current_account.id).map(&:following_id)
         followers_id << current_account.id
         @posts = Post.includes(:account).where(account_id: followers_id)

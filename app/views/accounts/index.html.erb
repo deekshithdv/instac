@@ -23,19 +23,36 @@
             </div>
           </div>
           <div class="description">
+          <% if post.account.id == current_account.id %>
+          <%= link_to  raw("<i class=\"fa fa-trash-o \"></i>"), post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
+          <%end%>
           <% pre_like = post.likes.find { |like| like.account_id == current_account.id} %>
           <% if pre_like %>
-            <%= link_to raw("<i class=\"fa fa-heart\"></i>"), post_like_path(post, pre_like), method: :delete %>
+            <%= link_to raw("<i class=\"fa fa-heart\"></i>"), post_like_path(post, pre_like), method: :delete%>
           <% else %>
             <%= link_to raw("<i class=\"fa fa-heart-o\"></i>"), post_likes_path(post), method: :post %>
           <% end %>
           
-            <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-            <%= post.caption %><br/>
-            <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a>
-            <% if post.account.id == current_account.id %>
-            <%= link_to 'Remove', post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
-            <%end%>
+          <p><%= post.likes.count %> Likes </p>
+          
+          <%= post.caption %><br/>
+          <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a><br/>
+          <% if post.comments.count != 0 %>
+          <div class="comments-feed">
+            <%= render "posts/comments", post: post %>
+          </div>
+          <% end %>
+          <div class="comment-box">
+          <%= form_with(model: [post, post.comments.build]) do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <div class="input-group">
+            <%= f.text_field :comment, placeholder: "Add comments here...", style:"width:85%;"%>
+            <div class="input-group-append">
+            <%= f.submit "Post", class:"btn btn-success float-right post-button"%>
+            </div>
+            </div>
+          <% end %>
+          </div>
           </div>
         </section>
       <% end %> 
