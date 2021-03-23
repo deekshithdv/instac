@@ -24,6 +24,7 @@ border-radius:50%;
     }
     .item{
         font-size: 20px;
+        color: #B0B0B0;
     }
 }
 
@@ -39,4 +40,12 @@ border-radius:50%;
     width: 40px;
   }
 
+  .badge { 
+    position: relative; 
+    top: -45px; 
+    left: 15px; 
+    border: 1px solid black; 
+    border-radius: 50%; 
+   } 
+   
     
