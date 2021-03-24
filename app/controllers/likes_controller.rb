@@ -9,7 +9,13 @@ class LikesController < ApplicationController
             create_notification @post
             @post.likes.create(account_id: current_account.id)
         end
-        redirect_to dashboard_path
+        
+        request_url= request.referrer
+        if request_url.include?('/dashboard')
+            redirect_to dashboard_path 
+        else
+            redirect_to post_path(@post)
+        end
     end
 
     def destroy
@@ -18,7 +24,12 @@ class LikesController < ApplicationController
         else
             @like.destroy
         end
-        redirect_to dashboard_path
+        request_url= request.referrer
+        if request_url.include?('/dashboard')
+            redirect_to dashboard_path 
+        else
+            redirect_to post_path(@post)
+        end
     end
 
     

@@ -1,10 +1,12 @@
 <% post.comments.each do |comment| %>
     <div class="comment-feed">
+    <div class="float-left">
     <%= link_to comment.account.username, profile_path(comment.account.id), class:"text-dark", style:"font-weight:600;" %>
     ~ <a style="font-size:13px;"><%= comment.comment%></a>
+    </div>
     <% if comment.account.id == current_account.id ||  post.account.id == current_account.id %>
     <%= link_to 'Delete', [comment.post,comment], :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
     <%end%>
-    </div>
+    </div><br/>
 <% end %>
 

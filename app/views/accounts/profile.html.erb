@@ -44,11 +44,14 @@
     </div>
   </div>
 
+  
   <div class="row">
     <% @post.each do |post| %>
       <div class="col-4">
       <div>
-          <%=link_to image_tag(post.image,:class=>"feed"), "#" %>
+        <%=link_to post_path(post) do %>
+          <%=image_tag(post.image,:class=>"feed")%> 
+        <% end %>
       </div>
       </div>
     <%end%>

@@ -22,10 +22,12 @@
               <%=image_tag post.image , :width => '100%'%>
             </div>
           </div>
+
           <div class="description">
           <% if post.account.id == current_account.id %>
-          <%= link_to  raw("<i class=\"fa fa-trash-o \"></i>"), post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
+            <%= link_to  raw("<i class=\"fa fa-trash-o \"></i>"), post, :method => :delete, :confirm => "Are you sure?", :style=> 'float:right;font-size:12px;'%>
           <%end%>
+          
           <% pre_like = post.likes.find { |like| like.account_id == current_account.id} %>
           <% if pre_like %>
             <%= link_to raw("<i class=\"fa fa-heart\"></i>"), post_like_path(post, pre_like), method: :delete%>
@@ -36,12 +38,13 @@
           <p><%= post.likes.count %> Likes </p>
           
           <%= post.caption %><br/>
-          <a class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</a><br/>
+          <p class="text-muted", style="font-size:10px;">posted <%=time_ago_in_words post.created_at%> ago</p><br/>
           <% if post.comments.count != 0 %>
           <div class="comments-feed">
             <%= render "posts/comments", post: post %>
           </div>
           <% end %>
+          
           <div class="comment-box">
           <%= form_with(model: [post, post.comments.build]) do |f| %>
             <%= f.hidden_field :post_id, value: post.id %>

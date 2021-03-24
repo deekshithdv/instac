@@ -5,12 +5,21 @@ class CommentsController < ApplicationController
         @comment = Comment.new(comment_params)
         @comment.account_id = current_account.id if account_signed_in?
         @post = Post.find(params[:post_id])
-
+        request_url= request.referrer
+        
         if @comment.save
             create_notification @post, @comment
-            redirect_to dashboard_path
+            if request_url.include?('/dashboard')
+                redirect_to dashboard_path 
+            else
+                redirect_to post_path(@post)
+            end
         else
-            redirect_to dashboard_path
+            if request_url.include?('/dashboard')
+                redirect_to dashboard_path 
+            else
+                redirect_to post_path(@post)
+            end
         end    
     end
 
@@ -18,7 +27,12 @@ class CommentsController < ApplicationController
         @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
         @comment.destroy
-        redirect_to dashboard_path
+        request_url= request.referrer
+        if request_url.include?('/dashboard')
+            redirect_to dashboard_path 
+        else
+            redirect_to post_path(@post)
+        end
     end
     
     private
