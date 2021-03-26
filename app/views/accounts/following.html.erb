@@ -1,6 +1,5 @@
 <table class="table table-condensed">
   <tr>
-  
     <th colspan="2" >Following</th>
   </tr>
   
@@ -14,8 +13,8 @@
         <%end%>
       </td>
       <td style="text-align:left;">
-      <%=link_to Account.find(f).username, profile_path(f),:class=>"text-dark" %>
-      </td>
-      <% end %>
-      </tr>
+        <%=link_to Account.find(f).username, profile_path(f),:class=>"text-dark" %>
+      </td> 
+    </tr>
+  <% end %>
 </table>
